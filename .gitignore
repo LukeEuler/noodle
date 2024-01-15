@@ -1,0 +1,13 @@
+# ide
+.idea
+*.iml
+.vscode
+# External packages folder
+vendor/
+
+# build
+build/
+
+#store
+.DS_Store
+

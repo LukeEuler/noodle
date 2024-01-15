@@ -1,0 +1,42 @@
+# curl -X 'POST' -d '{"jsonrpc":"2.0","id":1,"method":"eth_blockNumber","params":[]}' -H 'Accept: application/json' -H 'Authorization: Basic Og==' -H 'Content-Type: application/json' 'http://matic.node.com:8080' | jq ".result" | xargs printf "%d\n"
+
+name = "matic-node"
+
+[node_check]
+check_interval_s = 10
+file = "/tmp/noodle_matic.txt"
+max_record_num = 5
+method = "POST"
+url = "http://matic.node.com:8080"
+body = '''{"jsonrpc":"2.0","id":1,"method":"eth_blockNumber","params":[]}'''
+height_json_path = "result"
+[node_check.headers]
+"Content-Type" = "application/json"
+Accept = "application/json"
+
+[commands]
+content = [
+    ["ls"],
+    ["ls","-l"],
+    # ["service","heimdalld","stop"],
+    # ["mv","/var/lib/heimdall/config/addrbook.json","/var/lib/heimdall/config/addrbook.json.backup"],
+    # ["service","heimdalld","start"],
+    # ["service","bor","restart"]
+]
+
+[ding]
+enable = true
+
+url = "https://oapi.dingtalk.com/robot/send?access_token=abcabcabcabc"
+secret = "SEC123abc"
+
+[lark]
+enable = true
+
+url = "https://open.larksuite.com/open-apis/bot/v2/hook/xxxxx"
+secret = "xxxxx"
+
+[log]
+    [log.file]
+    level = 5
+    path ="/tmp/noodle.log"
