@@ -33,13 +33,6 @@ func main() {
 		dc.ShowVersion()
 		return
 	}
-	if *forceRestart {
-		err := doRestart()
-		if err != nil {
-			log.Entry.WithError(err).Fatal(err)
-		}
-		return
-	}
 
 	noodle.LoadConfig(*configFile)
 	if noodle.Conf.Ding.Enable {
@@ -47,6 +40,14 @@ func main() {
 	}
 	if noodle.Conf.Lark.Enable {
 		caller.SetLark(noodle.Conf.Lark.URL, noodle.Conf.Lark.Secret)
+	}
+
+	if *forceRestart {
+		err := doRestart()
+		if err != nil {
+			log.Entry.WithError(err).Fatal(err)
+		}
+		return
 	}
 
 	height, err := getNowHeight()
