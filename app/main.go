@@ -25,11 +25,19 @@ var caller = new(consumer.Consumer)
 func main() {
 	log.AddConsoleOut(5)
 	showVersion := flag.Bool("v", false, "show version")
+	forceRestart := flag.Bool("f", false, "force restart")
 	configFile := flag.String("c", "config.toml", "set the config file path")
 	flag.Parse()
 
 	if *showVersion {
 		dc.ShowVersion()
+		return
+	}
+	if *forceRestart {
+		err := doRestart()
+		if err != nil {
+			log.Entry.WithError(err).Fatal(err)
+		}
 		return
 	}
 
