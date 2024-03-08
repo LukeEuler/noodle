@@ -1,10 +1,12 @@
 module github.com/LukeEuler/noodle
 
-go 1.20
+go 1.21
+
+toolchain go1.21.8
 
 require (
 	github.com/BurntSushi/toml v1.3.2
-	github.com/LukeEuler/dolly v0.0.33
+	github.com/LukeEuler/dolly v0.0.34
 	github.com/pkg/errors v0.9.1
 	github.com/tidwall/gjson v1.17.0
 )
